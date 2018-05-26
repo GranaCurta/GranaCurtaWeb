@@ -29,3 +29,7 @@ textarea {
         padding: 0;
     }
 }
+
+.content-pad {
+    padding-top: 2em;
+}
