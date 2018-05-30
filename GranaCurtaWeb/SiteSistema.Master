@@ -1,23 +1,22 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GranaCurtaWeb.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteSistema.master.cs" Inherits="GranaCurtaWeb.SiteSistema" %>
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Grana Curta</title>
+    <title><%: Page.Title %> - My ASP.NET Application</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css-sistema" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
 </head>
 <body>
-    <form runat="server">
+    <form id="frmMain" runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -39,23 +38,23 @@
         </asp:ScriptManager>
 
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-            <a class="navbar-brand my-0 mr-md-auto mx-2 font-weight-normal text-dark" runat="server" href="~/">Grana Curta</a>
-            <nav class="my-3 my-md-0 mr-md-3">
-                <a runat="server" class="p-2 text-dark" href="~/About">Cadastrar</a>
-                <a runat="server" class="p-2 text-dark" href="~/About">Sobre</a>
+            <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="#">Features</a>
+                <a class="p-2 text-dark" href="#">Enterprise</a>
+                <a class="p-2 text-dark" href="#">Support</a>
+                <a class="p-2 text-dark" href="#">Pricing</a>
             </nav>
-            <a runat="server" class="p-2 btn btn-outline-success" href="~/Sistema">Entrar</a>
+            <a class="btn btn-outline-primary" href="#">Sign up</a>
         </div>
 
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
-            </footer>
         </div>
-
     </form>
 </body>
 </html>

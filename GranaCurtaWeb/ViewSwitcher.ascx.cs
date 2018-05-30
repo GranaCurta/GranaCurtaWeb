@@ -20,7 +20,7 @@ namespace GranaCurtaWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine current view
-            var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
+            var isMobile = false;//WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
             CurrentView = isMobile ? "Mobile" : "Desktop";
 
             // Determine alternate view
