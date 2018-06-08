@@ -2,18 +2,19 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - Grana Curta</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:BundleReference runat="server" Path="~/Content/css-sistema" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
 </head>
 <body>
     <form id="frmMain" runat="server">
@@ -38,23 +39,23 @@
         </asp:ScriptManager>
 
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-            <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-            <nav class="my-2 my-md-0 mr-md-3">
-                <a class="p-2 text-dark" href="#">Features</a>
-                <a class="p-2 text-dark" href="#">Enterprise</a>
-                <a class="p-2 text-dark" href="#">Support</a>
-                <a class="p-2 text-dark" href="#">Pricing</a>
+            <a class="navbar-brand my-0 mr-md-auto mx-2 font-weight-normal text-dark" runat="server" href="~/">Grana Curta</a>
+            <nav class="my-3 my-md-0 mr-md-3">
+                <a runat="server" class="p-2 text-dark" href="~/About">Cadastrar</a>
+                <a runat="server" class="p-2 text-dark" href="~/About">Sobre</a>
             </nav>
-            <a class="btn btn-outline-primary" href="#">Sign up</a>
+            <a runat="server" class="p-2 btn btn-outline-success" href="~/Sistema">Log off</a>
         </div>
 
-
-
-
-        <div>
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
+            </footer>
         </div>
+
     </form>
 </body>
 </html>
