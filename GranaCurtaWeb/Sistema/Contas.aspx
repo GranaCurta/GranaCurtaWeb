@@ -14,6 +14,9 @@
 
             loadCardsContas(null);
 
+            //Busca os tipos de contas
+            loadModalComboTiposContas();
+
             //-------------------------------
             //Bind methods
 
@@ -23,27 +26,29 @@
 
             $("#btnSalvar").click(function (card) {
 
-                var objJson = {
-                    id_conta: $("#idConta").val(),
-                    nm_conta: $("#txtNomeConta").val().trim(),
-                    vl_limite_ce: $("#txtLimiteCE").val().replace('.', '').replace(',', '.'),
-                    id_tipo_conta: $("#cmbTiposContas").val()
-                };
+                if (validate()) {
+                    var objJson = {
+                        id_conta: $("#idConta").val(),
+                        nm_conta: $("#txtNomeConta").val().trim(),
+                        vl_limite_ce: $("#txtLimiteCE").val().replace('.', '').replace(',', '.'),
+                        id_tipo_conta: $("#cmbTiposContas").val()
+                    };
 
-                var intIdConta = $("#idConta").val();
+                    var intIdConta = $("#idConta").val();
 
-                var strOperationType = intIdConta === "" ? "POST" : "PUT";
-                var uri = "/api/contas" + (intIdConta === "" ? "" : "/" + intIdConta);
+                    var strOperationType = intIdConta === "" ? "POST" : "PUT";
+                    var uri = "/api/contas" + (intIdConta === "" ? "" : "/" + intIdConta);
 
-                $.ajax({
-                    url: uri,
-                    type: strOperationType,
-                    data: objJson,
-                    success: function (result) {
-                        loadCardsContas(null);
-                        $("#modalNew").modal('toggle');
-                    }
-                });
+                    $.ajax({
+                        url: uri,
+                        type: strOperationType,
+                        data: objJson,
+                        success: function (result) {
+                            loadCardsContas(null);
+                            $("#modalNew").modal('toggle');
+                        }
+                    });
+                }
             });
 
             $("#btnExcluir").click(function () {
@@ -114,8 +119,6 @@
             }
 
             function showModalDetail(intIdConta) {
-                //Busca os tipos de contas
-                loadModalComboTiposContas();
 
                 var objJson = null;
 
@@ -133,37 +136,32 @@
                             });
 
                             loadModalData(objJson);
-                            setModalComboTiposContas(objJson);
                             $("#modalNew").modal('toggle');
                         });
                 } else {
                     loadModalData(objJson);
-                    setModalComboTiposContas(objJson);
                     $("#modalNew").modal('toggle');
                 }
             }
 
             function loadModalData(objJson) {
 
+                $('#msgInvNomeConta').addClass('d-none');
+                $('#msgInvLimiteCE').addClass('d-none');
+                $('#msgInvTiposContas').addClass('d-none');
+
                 if (objJson) {
                     $("#exampleModalLabel").text("Editar Conta");
                     $("#idConta").val(objJson.id_conta);
                     $("#txtNomeConta").val(objJson.nm_conta);
                     $("#txtLimiteCE").val(objJson.vl_limite_ce);
+                    $("#cmbTiposContas").val(objJson.id_tipo_conta);
                 } else {
                     //reset modal
                     $("#exampleModalLabel").text("Nova Conta");
                     $("#idConta").val("");
                     $("#txtNomeConta").val("");
                     $("#txtLimiteCE").val("");
-                }
-            }
-
-            function setModalComboTiposContas(objJson) {
-
-                if (objJson) {
-                    $("#cmbTiposContas").val(objJson.id_tipo_conta);
-                } else {
                     $("#cmbTiposContas").val("");
                 }
             }
@@ -175,6 +173,35 @@
                 card.find(".nm_tipo_conta").append(item.nm_tipo_conta);
                 card.find(".vl_saldo").text(item.vl_saldo);
                 card.find(".vl_limite_ce").text(item.vl_limite_ce);
+            }
+
+            function validate() {
+                var blnValidated = true;
+
+                if ($('#txtNomeConta').val().trim() == '') {
+                    $('#msgInvNomeConta').removeClass('d-none');
+                    blnValidated = false;
+                } else {
+                    $('#msgInvNomeConta').addClass('d-none');
+                }
+
+                var pattFormatedNumbers = /^[0-9]{1,3}(.[0-9]{3})*(\,[0-9]+)?$/;
+
+                if (!pattFormatedNumbers.test($('#txtLimiteCE').val().trim())) {
+                    $('#msgInvLimiteCE').removeClass('d-none');
+                    blnValidated = false;
+                } else {
+                    $('#msgInvLimiteCE').addClass('d-none');
+                }
+
+                if ($('#cmbTiposContas').val().trim() == '') {
+                    $('#msgInvTiposContas').removeClass('d-none');
+                    blnValidated = false;
+                } else {
+                    $('#msgInvTiposContas').addClass('d-none');
+                }
+
+                return blnValidated;
             }
         });
     </script>
@@ -209,16 +236,19 @@
                         <input type="hidden" id="idConta" />
                         <label for="exampleInputEmail1">Nome da Conta</label>
                         <input type="text" class="form-control col-12" id="txtNomeConta" aria-describedby="emailHelp" placeholder="Exemplo Banrisul, Bradesco">
+                        <div class="text-danger d-none" id="msgInvNomeConta">Informe o nome da conta.</div>
                     </div>
                     <div class="form-group col-12">
                         <label for="exampleInputPassword1">Limite Cheque Especial (R$)</label>
                         <input type="text" class="form-control col-12" id="txtLimiteCE" placeholder="0,00">
+                        <div class="text-danger d-none" id="msgInvLimiteCE">Informe o valor no formato correto. Ex.: 1.111,11.</div>
                     </div>
                     <div class="form-group col-12">
                         <label for="exampleInputPassword1">Tipo de Conta</label>
                         <select class="form-control col-12 custom-select" id="cmbTiposContas">
                             <option value="">Selecione...</option>
                         </select>
+                        <div class="text-danger d-none" id="msgInvTiposContas">Selecione um tipo de conta.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
