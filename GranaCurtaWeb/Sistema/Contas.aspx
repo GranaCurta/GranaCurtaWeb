@@ -11,7 +11,7 @@
 
             //-------------------------------
             //Load data
-
+            $("#modalWaiting").modal('show');
             loadCardsContas(null);
 
             //Busca os tipos de contas
@@ -27,6 +27,8 @@
             $("#btnSalvar").click(function (card) {
 
                 if (validate()) {
+                    //$("#modalWaiting").modal('show');
+
                     var objJson = {
                         id_conta: $("#idConta").val(),
                         nm_conta: $("#txtNomeConta").val().trim(),
@@ -44,8 +46,9 @@
                         type: strOperationType,
                         data: objJson,
                         success: function (result) {
-                            loadCardsContas(null);
                             $("#modalNew").modal('toggle');
+                            $("#modalWaiting").modal('show');
+                            loadCardsContas(null);
                         }
                     });
                 }
@@ -60,8 +63,10 @@
                     url: uri,
                     type: 'DELETE',
                     success: function (result) {
-                        loadCardsContas(null);
                         $("#modalDelete").modal('toggle');
+                        $("#modalWaiting").modal('show');
+                        loadCardsContas(null);
+                        //$("#modalWaiting").modal('hide');
                     }
                 });
             });
@@ -70,8 +75,11 @@
             //User functions
 
             function loadCardsContas(intIdConta) {
+                //$("#modalWaiting").modal('show');
+
                 if (!intIdConta) {
                     $('#lstContas').empty();
+                    //$("#modalWaiting").modal('hide');
                 }
                 $.getJSON(uri + (intIdConta ? "" + intIdConta : ""))
                     .done(function (data) {
@@ -91,6 +99,9 @@
                                 showModalDetail(item.id_conta);
                             });
                             card.appendTo($('#lstContas'));
+                            //$("#modalWaiting").modal('toggle');
+
+                            $("#modalWaiting").modal('hide');
                         });
                     });
             };
@@ -123,6 +134,7 @@
                 var objJson = null;
 
                 if (intIdConta) {
+                    //$('#modalWaiting').modal('toggle');
                     $.getJSON(uri + "" + intIdConta)
                         .done(function (data) {
                             objJson = new Object();
@@ -136,6 +148,7 @@
                             });
 
                             loadModalData(objJson);
+                            //$('#modalWaiting').modal('toggle');
                             $("#modalNew").modal('toggle');
                         });
                 } else {
