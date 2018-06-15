@@ -48,12 +48,56 @@
         </div>
 
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
-            </footer>
+            <div class="row ">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-2 col-xl-2">
+                    <button class="navbar-toggler navbar-light bg-white" type="button" data-toggle="collapse" data-target="#navMain" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="text-dark">Menu</span>
+                    </button>
+                    <ul class="nav collapse flex-column" id="navMain">
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="~/Sistema/Default.aspx">Dashboard Principal</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Importar extratos</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="~/Sistema/Contas.aspx">Contas bancárias</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Cartões de crédito</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Devedores</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Metas</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Obrigações</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Extratos</a>
+                        </li>
+                    </ul>
+                </div>
+                <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </main>
+            </div>
+            <div class="row flex-xl-nowrap">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <hr />
+                </div>
+            </div>
+            <div class="row flex-xl-nowrap">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <footer>
+                        <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
+                    </footer>
+                </div>
+            </div>
         </div>
 
     </form>
