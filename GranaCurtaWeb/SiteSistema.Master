@@ -56,28 +56,28 @@
                     </button>
                     <ul class="nav collapse flex-column" id="navMain">
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="~/Sistema/Default.aspx">Dashboard Principal</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Default.aspx">Dashboard Principal</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Importar extratos</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Importar extratos</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="~/Sistema/Contas.aspx">Contas bancárias</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Contas.aspx">Contas bancárias</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Cartões de crédito</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Cartões de crédito</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Devedores</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Devedores</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Metas</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Metas</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Obrigações</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Obrigações</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-dark" runat="server" href="#">Extratos</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Extratos</a>
                         </li>
                     </ul>
                 </div>
