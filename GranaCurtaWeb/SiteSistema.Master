@@ -48,14 +48,74 @@
         </div>
 
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
-            </footer>
+            <div class="row ">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-2 col-xl-2">
+                    <button class="navbar-toggler navbar-light bg-white" type="button" data-toggle="collapse" data-target="#navMain" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="text-dark">Menu</span>
+                    </button>
+                    <ul class="nav collapse flex-column" id="navMain">
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Default.aspx">Dashboard Principal</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Importar extratos</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Contas.aspx">Contas bancárias</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Cartões de crédito</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Devedores</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Metas</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Obrigações</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Extratos</a>
+                        </li>
+                    </ul>
+                </div>
+                <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </main>
+            </div>
+            <div class="row flex-xl-nowrap">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <hr />
+                </div>
+            </div>
+            <div class="row flex-xl-nowrap">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <footer>
+                        <p>&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
+                    </footer>
+                </div>
+            </div>
         </div>
-
+        <div id="modalWaiting" class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <%--<h5 class="modal-title">Excluir Conta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>--%>
+                    </div>
+                    <div class="modal-body">
+                        Processando informações...
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 </html>
