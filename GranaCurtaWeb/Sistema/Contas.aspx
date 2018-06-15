@@ -22,12 +22,11 @@
             });
 
             $("#btnSalvar").click(function (card) {
-                //$(this).toggleClass("disabled");
-                //$(this).text("Salvando...");
+
                 var objJson = {
                     id_conta: $("#idConta").val(),
-                    nm_conta: $("#txtNomeConta").val(),
-                    vl_limite_ce: $("#txtLimiteCE").val(),
+                    nm_conta: $("#txtNomeConta").val().trim(),
+                    vl_limite_ce: $("#txtLimiteCE").val().replace('.', '').replace(',', '.'),
                     id_tipo_conta: $("#cmbTiposContas").val()
                 };
 
@@ -132,15 +131,16 @@
                                     id_tipo_conta: item.id_tipo_conta
                                 }
                             });
-                        });
-                }
 
-                //visualisar a modal
-                $("#modalNew").modal('toggle').on('shown.bs.modal', function (e) {
+                            loadModalData(objJson);
+                            setModalComboTiposContas(objJson);
+                            $("#modalNew").modal('toggle');
+                        });
+                } else {
                     loadModalData(objJson);
                     setModalComboTiposContas(objJson);
-                });
-
+                    $("#modalNew").modal('toggle');
+                }
             }
 
             function loadModalData(objJson) {
