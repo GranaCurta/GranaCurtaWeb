@@ -100,9 +100,9 @@
                             });
                             card.appendTo($('#lstContas'));
                             //$("#modalWaiting").modal('toggle');
-
-                            $("#modalWaiting").modal('hide');
                         });
+
+                        $("#modalWaiting").modal('hide');
                     });
             };
 
