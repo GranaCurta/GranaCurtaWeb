@@ -205,14 +205,17 @@
 
                 var str4UltDig = $('#txt4UltDig').val().trim();
                 if (
-                    str4UltDig == '' ||
-                    str4UltDig.length != 4 ||
-                    pattNumbers.test(str4UltDig)
+                    str4UltDig != '' && str4UltDig.length != 4
                 ) {
                     $('#msg4UltDig').removeClass('d-none');
                     blnValidated = false;
                 } else {
-                    $('#msg4UltDig').addClass('d-none');
+                    if (pattNumbers.test(str4UltDig)) {
+                        $('#msg4UltDig').removeClass('d-none');
+                        blnValidated = false;
+                    } else {
+                        $('#msg4UltDig').addClass('d-none');
+                    }
                 }
 
                 var strVencimentoDia = $('#txtVencimentoDia').val().trim();
