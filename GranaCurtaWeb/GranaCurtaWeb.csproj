@@ -221,6 +221,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Sistema\Cartoes.aspx" />
     <Content Include="Sistema\Contas.aspx" />
     <Content Include="Sistema\Default.aspx" />
     <Content Include="Sistema\Login.aspx" />
@@ -243,6 +244,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CartoesController.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -263,6 +265,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema\Cartoes.aspx.cs">
+      <DependentUpon>Cartoes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sistema\Cartoes.aspx.designer.cs">
+      <DependentUpon>Cartoes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Contas.aspx.cs">
       <DependentUpon>Contas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
