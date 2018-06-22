@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\CartoesDAL.cs" />
     <Compile Include="DAL\ContasDAL.cs" />
     <Compile Include="DAL\TiposContasDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -65,7 +65,7 @@
                             <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Contas.aspx">Contas bancárias</a>
                         </li>
                         <li>
-                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Cartões de crédito</a>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Cartoes.aspx">Cartões de crédito</a>
                         </li>
                         <li>
                             <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Devedores</a>
