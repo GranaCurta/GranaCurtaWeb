@@ -44,7 +44,7 @@
                 <a runat="server" class="p-2 text-dark" href="~/About">Cadastrar</a>
                 <a runat="server" class="p-2 text-dark" href="~/About">Sobre</a>
             </nav>
-            <a runat="server" class="p-2 btn btn-outline-success" href="~/Sistema">Entrar</a>
+            <a runat="server" class="p-2 btn btn-outline-success" href="~/Login">Entrar</a>
         </div>
 
         <div class="container body-content">
