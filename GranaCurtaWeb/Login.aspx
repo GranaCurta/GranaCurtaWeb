@@ -49,7 +49,7 @@
                     <h5 class="mb-4">Entrar no Grana Curta</h5>
                 </div>
             </div>
-            <%--<div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="card border-success">
                     <div class="card-body">
                         <div class="row justify-content-center">
@@ -59,31 +59,12 @@
                             </div>
                         </div>
                         <div class="row justify-content-center mt-4">
-                            <div class="col-auto">
+                            <div class="col">
                                 <label for="inputPassword">Senha</label>
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" style="width: 100%" />
                             </div>
                         </div>
                         <button class="btn btn-lg btn-success mt-4 btn-block" type="button" style="width: 100%">Entrar</button>
-                    </div>
-                </div>
-            </div>--%>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="email@exemplo.com" />
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="inputPassword">Senha</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Senha" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-lg btn-success mt-4 btn-block" type="button">Entrar</button>
-                        </div>
                     </div>
                 </div>
             </div>
