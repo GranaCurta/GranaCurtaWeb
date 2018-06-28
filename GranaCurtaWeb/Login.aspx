@@ -49,31 +49,41 @@
                     <h5 class="mb-4">Entrar no Grana Curta</h5>
                 </div>
             </div>
+
             <div class="row justify-content-center">
-                <div class="card border-success">
+                <div class="card border-success" style="min-width: 330px">
                     <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="">
+                        <div class="row">
+                            <div class="col">
                                 <label for="inputEmail">Email</label>
                                 <input type="email" id="inputEmail" class="form-control" placeholder="email@exemplo.com" />
                             </div>
                         </div>
-                        <div class="row justify-content-center mt-4">
+                        <div class="row pt-2">
                             <div class="col">
                                 <label for="inputPassword">Senha</label>
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" style="width: 100%" />
                             </div>
                         </div>
-                        <button class="btn btn-lg btn-success mt-4 btn-block" type="button" style="width: 100%">Entrar</button>
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <button class="btn btn-success mt-4 btn-block" type="submit">Entrar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <p class="mt-5 mb-3">&copy; <%: DateTime.Now.Year %> - Grana Curta</p>
                 </div>
             </div>
         </div>
+
+        <%--<div style="width: 100%; max-width: 330px; padding: 15px; margin: auto;">
+            <input type="password" class="form-control" placeholder="teste" />
+        </div>--%>
     </form>
 </body>
 </html>
