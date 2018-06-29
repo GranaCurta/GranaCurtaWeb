@@ -36,6 +36,34 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+        <script>
+        $(document).ready(function () {
+
+            $("#btnLogin").click(function (card) {
+
+                var objJson = {
+                    email: $("#inpEmail").val(),
+                    senha: $("#inpSenha").val()
+                };
+
+                var uri = "/api/login/";
+
+                $.ajax({
+                    url: uri,
+                    type: "POST",
+                    data: objJson,
+                    success: function (result) {
+                        $("#<% =hdnToken.ClientID %>").val(result);
+                        $("#frmLogin").submit();
+                    },
+                    error: function (result) {
+                        alert("Erro: " + result);
+                    }
+                });
+            });
+        });
+    </script>
+        <asp:HiddenField ID="hdnToken" runat="server" />
         <div class="container body-content p-4">
             <div class="row justify-content-center">
                 <div class="col-auto">
@@ -56,18 +84,18 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputEmail">Email</label>
-                                <input type="email" id="inputEmail" class="form-control" placeholder="email@exemplo.com" />
+                                <input type="email" id="inpEmail" class="form-control" placeholder="email@exemplo.com" />
                             </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col">
-                                <label for="inputPassword">Senha</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" style="width: 100%" />
+                                <label for="inpSenha">Senha</label>
+                                <input type="password" id="inpSenha" class="form-control" placeholder="Senha" style="width: 100%" />
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <button class="btn btn-success mt-4 btn-block" type="submit">Entrar</button>
+                                <button id="btnLogin" class="btn btn-success mt-4 btn-block" type="button">Entrar</button>
                             </div>
                         </div>
                     </div>
@@ -80,10 +108,6 @@
                 </div>
             </div>
         </div>
-
-        <%--<div style="width: 100%; max-width: 330px; padding: 15px; margin: auto;">
-            <input type="password" class="form-control" placeholder="teste" />
-        </div>--%>
     </form>
 </body>
 </html>
