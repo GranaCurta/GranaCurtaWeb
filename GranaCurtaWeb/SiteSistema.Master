@@ -38,13 +38,16 @@
             </Scripts>
         </asp:ScriptManager>
 
+        <asp:HiddenField ID="hdnToken" runat="server" />
+
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
             <a class="navbar-brand my-0 mr-md-auto mx-2 font-weight-normal text-dark" runat="server" href="~/">Grana Curta</a>
             <nav class="my-3 my-md-0 mr-md-3">
                 <a runat="server" class="p-2 text-dark" href="~/About">Cadastrar</a>
                 <a runat="server" class="p-2 text-dark" href="~/About">Sobre</a>
             </nav>
-            <a runat="server" class="p-2 btn btn-outline-success" href="~/Sistema">Log off</a>
+            <%--<a runat="server" class="p-2 btn btn-outline-success" href="~/Sistema">Log off</a>--%>
+            <asp:Button ID="btnLogOff" runat="server" Text="Log off" CssClass="p-2 btn btn-outline-success" OnClick="btnLogOff_Click" />
         </div>
 
         <div class="container body-content">

@@ -6,6 +6,7 @@
 
             //-------------------------------
             //Global variables
+            //alert($("#<%= Master.FindControl("hdnToken").ClientID %>").val());
 
             var uriPadrao = '/api/cartoes/';
 

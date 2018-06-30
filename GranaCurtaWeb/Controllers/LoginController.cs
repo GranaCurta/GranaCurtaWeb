@@ -50,7 +50,7 @@ namespace GranaCurtaWeb.Controllers
                 {
                     if (row["nm_email"].ToString().Equals(stbEmail.ToString()))
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(stbEmail.ToString()));
+                        return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(stbEmail.ToString(), row["id_usuario"].ToString()));
                     }
                 }
             }

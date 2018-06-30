@@ -9,7 +9,7 @@ namespace GranaCurtaWeb.Models
     {
         private static string Secret = "XCAP05H6LoKvbRRa/QkqLNMI7cOHguaRyHzyg7n5qEkGjQmtBhz4SzYh4Fqwjyi3KJHlSXKPwVu2+bXr6CtpgQ==";
 
-        public static string GenerateToken(string username)
+        public static string GenerateToken(string username, string id)
         {
             byte[] key = Convert.FromBase64String(Secret);
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
@@ -25,7 +25,8 @@ namespace GranaCurtaWeb.Models
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Subject = new ClaimsIdentity(
                     new[] {
-                        new Claim(ClaimTypes.Name, username)
+                        new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.Sid, id)
                     }),
                 IssuedAt = DateTime.Now
             };
@@ -58,6 +59,30 @@ namespace GranaCurtaWeb.Models
             username = usernameClaim.Value;
 
             return username;
+        }
+
+        public static string ValidateTokenSID(string token)
+        {
+            string sid = null;
+            ClaimsPrincipal principal = GetPrincipal(token);
+
+            if (principal == null)
+                return null;
+
+            ClaimsIdentity identity = null;
+            try
+            {
+                identity = (ClaimsIdentity)principal.Identity;
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+
+            Claim sidClaim = identity.FindFirst(ClaimTypes.Sid);
+            sid = sidClaim.Value;
+
+            return sid;
         }
 
         public static ClaimsPrincipal GetPrincipal(string token)
