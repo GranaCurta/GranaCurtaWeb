@@ -37,32 +37,43 @@
             </Scripts>
         </asp:ScriptManager>
         <script>
-        $(document).ready(function () {
+            $(document).ready(function () {
+                $(".close").click(function () {
+                    $(".message-login-alert").toggleClass("d-none");
+                });
 
-            $("#btnLogin").click(function (card) {
+                $("#btnLogin").click(function (card) {
+                    $("#btnLogin").text("Entrando...");
+                    $("#btnLogin").addClass("disabled");
 
-                var objJson = {
-                    email: $("#inpEmail").val(),
-                    senha: $("#inpSenha").val()
-                };
+                    $(".message-login-alert").addClass("d-none");
+                    var objJson = {
+                        email: $("#inpEmail").val(),
+                        senha: $("#inpSenha").val()
+                    };
 
-                var uri = "/api/login/";
+                    var uri = "/api/login/";
 
-                $.ajax({
-                    url: uri,
-                    type: "POST",
-                    data: objJson,
-                    success: function (result) {
-                        $("#<% =hdnToken.ClientID %>").val(result);
-                        $("#frmLogin").submit();
-                    },
-                    error: function (result) {
-                        alert("Erro: " + result);
-                    }
+                    $.ajax({
+                        url: uri,
+                        type: "POST",
+                        data: objJson,
+                        success: function (result) {
+                            $("#btnLogin").removeClass("disabled");
+                            $("#btnLogin").text("Entrar");
+                            $("#<% =hdnToken.ClientID %>").val(result);
+                            $("#frmLogin").submit();
+                        },
+                        error: function (result) {
+                            $(".message-login-alert").removeClass("d-none");
+                            $(".message-login-text").text(result.responseJSON);
+                            $("#btnLogin").removeClass("disabled");
+                            $("#btnLogin").text("Entrar");
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
         <asp:HiddenField ID="hdnToken" runat="server" />
         <div class="container body-content p-4">
             <div class="row justify-content-center">
@@ -75,6 +86,15 @@
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <h5 class="mb-4">Entrar no Grana Curta</h5>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="alert alert-danger alert-dismissible show message-login-alert d-none" role="alert">
+                    <span class="message-login-text">[E-mail ou senha inválidos.]</span>
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
 
