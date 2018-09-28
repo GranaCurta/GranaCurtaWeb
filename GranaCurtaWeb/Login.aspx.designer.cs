@@ -10,16 +10,16 @@
 namespace GranaCurtaWeb {
     
     
-    public partial class SiteSistema {
+    public partial class Login {
         
         /// <summary>
-        /// frmMain control.
+        /// frmLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmLogin;
         
         /// <summary>
         /// hdnToken control.
@@ -29,23 +29,5 @@ namespace GranaCurtaWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnToken;
-        
-        /// <summary>
-        /// btnLogOff control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogOff;
-        
-        /// <summary>
-        /// ContentPlaceHolder1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }
