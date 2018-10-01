@@ -43,6 +43,9 @@
                         url: uri,
                         type: strOperationType,
                         data: objJson,
+                        headers: {
+                            'Authorization': 'Bearer ' + $("#hdnToken").val()
+                        },
                         success: function (result) {
                             $("#modalNew").modal('toggle');
                             $("#modalWaiting").modal('show');
@@ -60,6 +63,9 @@
                 $.ajax({
                     url: uri,
                     type: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + $("#hdnToken").val()
+                    },
                     success: function (result) {
 
                         $("#modalDelete").modal('toggle');
@@ -79,10 +85,15 @@
                     $('#lstCartoes').empty();
                     //$("#modalWaiting").modal('hide');
                 }
-                $.getJSON(uriPadrao + (intIdCartao ? "" + intIdCartao : ""))
-                    .done(function (data) {
-                        // On success, 'data' contains a list of products.
-                        $.each(data, function (key, item) {
+
+                $.ajax({
+                    url: uriPadrao + (intIdCartao ? "" + intIdCartao : ""),
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $("#hdnToken").val()
+                    },
+                    success: function (result) {
+                        $.each(result, function (key, item) {
                             var card = $('.card-template').clone();
                             card.removeClass("card-template");
 
@@ -101,7 +112,8 @@
                         });
 
                         $("#modalWaiting").modal('hide');
-                    });
+                    }
+                });
             };
 
             function showModalExcluir(card) {
@@ -118,10 +130,16 @@
                 var objJson = null;
 
                 if (intId) {
-                    $.getJSON(uriPadrao + "" + intId)
-                        .done(function (data) {
+
+                    $.ajax({
+                        url: uriPadrao + "" + intId,
+                        type: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + $("#hdnToken").val()
+                        },
+                        success: function (result) {
                             objJson = new Object();
-                            $.each(data, function (key, item) {
+                            $.each(result, function (key, item) {
                                 objJson = {
                                     id_cartao: item.id_cartao,
                                     nm_cartao: item.nm_cartao,
@@ -134,7 +152,8 @@
 
                             loadModalData(objJson);
                             $("#modalNew").modal('toggle');
-                        });
+                        }
+                    });
                 } else {
                     loadModalData(objJson);
                     $("#modalNew").modal('toggle');
