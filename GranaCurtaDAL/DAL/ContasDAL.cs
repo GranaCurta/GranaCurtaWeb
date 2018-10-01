@@ -17,7 +17,7 @@ namespace GranaCurtaDAL.DAL
             this.strConnStr = strConnectionString;
         }
 
-        public DataTable getContas()
+        public DataTable GetContas(int intIdUsuario)
         {
             StringBuilder strQuery = new StringBuilder();
             DataTable dtbRetorno = new DataTable();
@@ -32,6 +32,8 @@ namespace GranaCurtaDAL.DAL
             strQuery.AppendLine("FROM granacurta.tb_contas c (NOLOCK)");
             strQuery.AppendLine("INNER JOIN granacurta.tb_tipos_contas tc (NOLOCK)");
             strQuery.AppendLine("	ON C.id_tipo_conta = tc.id_tipo_conta");
+            strQuery.AppendLine("WHERE");
+            strQuery.AppendLine("   id_usuario = @id_usuario");
 
             using (SqlConnection connection = new SqlConnection(this.strConnStr))
             {
@@ -40,6 +42,9 @@ namespace GranaCurtaDAL.DAL
                 try
                 {
                     connection.Open();
+
+                    command.Parameters.AddWithValue("@id_usuario", intIdUsuario);
+
                     SqlDataReader reader = command.ExecuteReader();
 
                     dtbRetorno.Load(reader);
@@ -56,7 +61,7 @@ namespace GranaCurtaDAL.DAL
             return dtbRetorno;
         }
 
-        public DataTable getConta(int intId)
+        public DataTable GetConta(int intId, int intIdUsuario)
         {
             StringBuilder strQuery = new StringBuilder();
             DataTable dtbRetorno = new DataTable();
@@ -73,6 +78,7 @@ namespace GranaCurtaDAL.DAL
             strQuery.AppendLine("	ON C.id_tipo_conta = tc.id_tipo_conta");
             strQuery.AppendLine("WHERE");
             strQuery.AppendLine("   id_conta = @id_conta");
+            strQuery.AppendLine("   AND id_usuario = @id_usuario");
 
             using (SqlConnection connection = new SqlConnection(this.strConnStr))
             {
@@ -82,6 +88,7 @@ namespace GranaCurtaDAL.DAL
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@id_conta", intId);
+                    command.Parameters.AddWithValue("@id_usuario", intIdUsuario);
 
                     SqlDataReader reader = command.ExecuteReader();
 
@@ -99,7 +106,7 @@ namespace GranaCurtaDAL.DAL
             return dtbRetorno;
         }
 
-        public int insertConta(string strConta, double dblVlrLimiteChequeEspecial, int intIdUsuario, int intIdTipoConta)
+        public int InsertConta(string strConta, double dblVlrLimiteChequeEspecial, int intIdUsuario, int intIdTipoConta)
         {
             int intRetorno = -1;
             StringBuilder strQuery = new StringBuilder();
@@ -136,7 +143,7 @@ namespace GranaCurtaDAL.DAL
             return intRetorno;
         }
 
-        public int updateConta(int intIdConta, string strConta, double dblVlrLimiteChequeEspecial, int intIdUsuario, int intIdTipoConta)
+        public int UpdateConta(int intIdConta, string strConta, double dblVlrLimiteChequeEspecial, int intIdUsuario, int intIdTipoConta)
         {
             int intRetorno = -1;
             StringBuilder strQuery = new StringBuilder();
@@ -183,7 +190,7 @@ namespace GranaCurtaDAL.DAL
             return intRetorno;
         }
 
-        public int deleteConta(int intIdUsuario, int intIdConta)
+        public int DeleteConta(int intIdUsuario, int intIdConta)
         {
             int intAffecRows = -1;
             StringBuilder strQuery = new StringBuilder();

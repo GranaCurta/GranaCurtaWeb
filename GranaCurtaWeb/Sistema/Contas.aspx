@@ -45,6 +45,9 @@
                         url: uri,
                         type: strOperationType,
                         data: objJson,
+                        headers: {
+                            'Authorization': 'Bearer ' + $("#hdnToken").val()
+                        },
                         success: function (result) {
                             $("#modalNew").modal('toggle');
                             $("#modalWaiting").modal('show');
@@ -57,11 +60,12 @@
             $("#btnExcluir").click(function () {
                 $('#modalDelete').modal({ backdrop: 'static', keyboard: true });
 
-                var uri = "/api/contas/" + $("#idContaExcluir").val();
-
                 $.ajax({
-                    url: uri,
+                    url: uri + $("#idContaExcluir").val(),
                     type: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + $("#hdnToken").val()
+                    },
                     success: function (result) {
                         $("#modalDelete").modal('toggle');
                         $("#modalWaiting").modal('show');
@@ -81,10 +85,15 @@
                     $('#lstContas').empty();
                     //$("#modalWaiting").modal('hide');
                 }
-                $.getJSON(uri + (intIdConta ? "" + intIdConta : ""))
-                    .done(function (data) {
-                        // On success, 'data' contains a list of products.
-                        $.each(data, function (key, item) {
+
+                $.ajax({
+                    url: uri,
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + $("#hdnToken").val()
+                    },
+                    success: function (result) {
+                        $.each(result, function (key, item) {
                             var card = $('.card-template').clone();
                             card.removeClass("card-template");
 
@@ -99,11 +108,11 @@
                                 showModalDetail(item.id_conta);
                             });
                             card.appendTo($('#lstContas'));
-                            //$("#modalWaiting").modal('toggle');
                         });
 
                         $("#modalWaiting").modal('hide');
-                    });
+                    }
+                });
             };
 
             function loadModalComboTiposContas() {
@@ -135,10 +144,16 @@
 
                 if (intIdConta) {
                     //$('#modalWaiting').modal('toggle');
-                    $.getJSON(uri + "" + intIdConta)
-                        .done(function (data) {
+
+                    $.ajax({
+                        url: uri + "" + intIdConta,
+                        type: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + $("#hdnToken").val()
+                        },
+                        success: function (result) {
                             objJson = new Object();
-                            $.each(data, function (key, item) {
+                            $.each(result, function (key, item) {
                                 objJson = {
                                     id_conta: item.id_conta,
                                     nm_conta: item.nm_conta,
@@ -150,7 +165,8 @@
                             loadModalData(objJson);
                             //$('#modalWaiting').modal('toggle');
                             $("#modalNew").modal('toggle');
-                        });
+                        }
+                    });
                 } else {
                     loadModalData(objJson);
                     $("#modalNew").modal('toggle');
