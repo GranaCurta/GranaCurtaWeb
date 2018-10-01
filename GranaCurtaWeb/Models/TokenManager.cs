@@ -116,5 +116,20 @@ namespace GranaCurtaWeb.Models
                 return null;
             }
         }
+
+        public static int GetTokenSID(string token)
+        {
+            string strSID = null;
+            int intSID = -1;
+
+            strSID = TokenManager.ValidateTokenSID(token);
+
+            if (!int.TryParse(strSID, out intSID))
+            {
+                throw new Exception("Token inválido.");
+            }
+
+            return intSID;
+        }
     }
 }
