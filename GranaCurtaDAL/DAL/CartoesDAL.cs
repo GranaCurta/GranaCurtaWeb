@@ -17,7 +17,7 @@ namespace GranaCurtaDAL.DAL
             this.strConnStr = strConnectionString;
         }
 
-        public DataTable getCartoes()
+        public DataTable getCartoes(int intIdUsuario)
         {
             StringBuilder strQuery = new StringBuilder();
             DataTable dtbRetorno = new DataTable();
@@ -33,6 +33,8 @@ namespace GranaCurtaDAL.DAL
             strQuery.AppendLine("	dt_criacao,");
             strQuery.AppendLine("	dt_alteracao");
             strQuery.AppendLine("FROM granacurta.tb_cartoes (NOLOCK)");
+            strQuery.AppendLine("WHERE");
+            strQuery.AppendLine("   id_usuario = @id_usuario");
 
             using (SqlConnection connection = new SqlConnection(this.strConnStr))
             {
@@ -41,6 +43,9 @@ namespace GranaCurtaDAL.DAL
                 try
                 {
                     connection.Open();
+
+                    command.Parameters.AddWithValue("@id_usuario", intIdUsuario);
+
                     SqlDataReader reader = command.ExecuteReader();
 
                     dtbRetorno.Load(reader);
@@ -57,7 +62,7 @@ namespace GranaCurtaDAL.DAL
             return dtbRetorno;
         }
 
-        public DataTable getCartao(int intId)
+        public DataTable getCartao(int intId, int intIdUsuario)
         {
             StringBuilder strQuery = new StringBuilder();
             DataTable dtbRetorno = new DataTable();
@@ -75,6 +80,7 @@ namespace GranaCurtaDAL.DAL
             strQuery.AppendLine("FROM granacurta.tb_cartoes (NOLOCK)");
             strQuery.AppendLine("WHERE");
             strQuery.AppendLine("   id_cartao = @id_cartao");
+            strQuery.AppendLine("   AND id_usuario = @id_usuario");
 
             using (SqlConnection connection = new SqlConnection(this.strConnStr))
             {
@@ -84,6 +90,7 @@ namespace GranaCurtaDAL.DAL
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@id_cartao", intId);
+                    command.Parameters.AddWithValue("@id_usuario", intIdUsuario);
 
                     SqlDataReader reader = command.ExecuteReader();
 

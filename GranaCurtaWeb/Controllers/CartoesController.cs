@@ -1,4 +1,5 @@
 ﻿using GranaCurtaDAL.DAL;
+using GranaCurtaWeb.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,20 @@ namespace GranaCurtaWeb
         // GET api/<controller>
         public DataTable Get()
         {
-            CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
+            DataTable dtbRetorno = null;
 
-            DataTable dtbRetorno = dal.getCartoes();
+            try
+            {
+                int intIdUsuario = TokenManager.GetTokenSID(Request.Headers.Authorization.Parameter);
+
+                CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
+
+                dtbRetorno = dal.getCartoes(intIdUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return dtbRetorno;
         }
@@ -25,9 +37,20 @@ namespace GranaCurtaWeb
         // GET api/<controller>/5
         public DataTable Get(int id)
         {
-            CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
+            DataTable dtbRetorno = null;
 
-            DataTable dtbRetorno = dal.getCartao(id);
+            try
+            {
+                int intIdUsuario = TokenManager.GetTokenSID(Request.Headers.Authorization.Parameter);
+
+                CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
+
+                dtbRetorno = dal.getCartao(id, intIdUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return dtbRetorno;
         }
@@ -46,7 +69,7 @@ namespace GranaCurtaWeb
                 int intVencimentoDia = (int)value["vl_vencimento_dia"];
                 //int intMelhorDia = (int)value["vl_melhor_dia"];
                 int intMelhorDia = -1;
-                int intIdUsuario = 1;
+                int intIdUsuario = TokenManager.GetTokenSID(Request.Headers.Authorization.Parameter);
 
                 CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
 
@@ -74,7 +97,7 @@ namespace GranaCurtaWeb
                 int intVencimentoDia = (int)value["vl_vencimento_dia"];
                 //int intMelhorDia = (int)value["vl_melhor_dia"];
                 int intMelhorDia = -1;
-                int intIdUsuario = 1;
+                int intIdUsuario = TokenManager.GetTokenSID(Request.Headers.Authorization.Parameter);
 
                 CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
 
@@ -95,9 +118,9 @@ namespace GranaCurtaWeb
 
             try
             {
-                CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
+                int intIdUsuario = TokenManager.GetTokenSID(Request.Headers.Authorization.Parameter);
 
-                int intIdUsuario = 1;
+                CartoesDAL dal = new CartoesDAL(System.Configuration.ConfigurationManager.ConnectionStrings["DB_GranaCurta"].ConnectionString);
 
                 int intAffecRows = dal.deleteCartao(intIdUsuario, id);
 
