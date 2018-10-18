@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DAL\CartoesDAL.cs" />
     <Compile Include="DAL\ContasDAL.cs" />
+    <Compile Include="DAL\MovimentacoesDAL.cs" />
     <Compile Include="DAL\TiposContasDAL.cs" />
     <Compile Include="DAL\UsuariosDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

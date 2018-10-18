@@ -235,6 +235,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Sistema\Movimentacoes.aspx" />
     <Content Include="Sistema\Cartoes.aspx" />
     <Content Include="Sistema\Contas.aspx" />
     <Content Include="Sistema\Default.aspx" />
@@ -267,6 +268,7 @@
     </Compile>
     <Compile Include="Controllers\ContasController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MovimentacoesController.cs" />
     <Compile Include="Controllers\TiposContasController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -287,6 +289,13 @@
     </Compile>
     <Compile Include="Models\TokenManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema\Movimentacoes.aspx.cs">
+      <DependentUpon>Movimentacoes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sistema\Movimentacoes.aspx.designer.cs">
+      <DependentUpon>Movimentacoes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Cartoes.aspx.cs">
       <DependentUpon>Cartoes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

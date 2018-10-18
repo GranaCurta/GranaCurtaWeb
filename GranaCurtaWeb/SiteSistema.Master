@@ -82,6 +82,9 @@
                         <li>
                             <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="#">Extratos</a>
                         </li>
+                        <li>
+                            <a class="navbar-brand font-weight-normal text-secondary" runat="server" href="~/Sistema/Movimentacoes.aspx">Movimentações</a>
+                        </li>
                     </ul>
                 </div>
                 <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
